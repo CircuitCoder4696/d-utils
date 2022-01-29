@@ -44,5 +44,4 @@ unittest {
     assert((cast(ubyte[])flags.__bitfield1_storage)[2]==0x60);
     assert((cast(ubyte[])flags.__bitfield1_storage)[3]==0x00);
     assert((cast(ubyte[])flags.__bitfield1_storage)[4]==0x40);
-    writeln(flags.__bitfield1_storage);   //   [17, 0, 96, 0, 64]
 };
