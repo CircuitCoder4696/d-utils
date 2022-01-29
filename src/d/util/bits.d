@@ -14,6 +14,7 @@ public struct BitArray(uint size) {
     };
     public void opIndexAssign(bool bit, uint index) @property {
         mixin(metaIndex_unrap);
+        assert(size > ((indexByte*8) + indexBit), "`bit` out of bounds!  ");
         ubyte* bytes= cast(ubyte*)this.data.ptr;
         ubyte v= bytes[indexByte];
         v ^= v & bitPlaces[indexBit];
