@@ -1,0 +1,6 @@
+name "util"
+license "LGPL 2.1"
+description "a library of useful compile-time and run-time objects.  "
+authors "CircuitCoder4696"
+#Note:   `./src/internals/` isn't or at least shouldn't be added, it is for internals, however `./src/d/` is added because that is what is supposed to be imported.  
+  importPaths "./src/d/"
