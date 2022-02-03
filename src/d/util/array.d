@@ -19,3 +19,9 @@ public struct array2d(T) {
 };
 
 alias doubleArray2d= array2d!double;
+
+unittest {
+    doubleArray2d test= doubleArray2d(4, 5);
+    test[3,5]= 21.0;
+    writeln(test);
+};
