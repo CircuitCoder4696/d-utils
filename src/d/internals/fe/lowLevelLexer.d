@@ -1,4 +1,4 @@
-module d.internals.fe.lexer;
+module d.internals.fe.lowLevelLexer;
 import std.conv:to;
 import std.regex:matchFirst;
 import std.stdio:writeln;
