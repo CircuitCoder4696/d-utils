@@ -21,6 +21,30 @@ public struct BitArray(uint size) {
         v |= bit * bitPlaces[indexBit];
         (cast(ubyte[])this.data)[indexByte]= v;
     };
+    public void setUByte(ubyte val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > index, "`byte` out of bounds!  ");
+        ubyte* bytes= cast(ubyte*)this.data.ptr;
+        bytes[index]= val;
+    };
+    public void setUShort(ushort val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > indexByte, "`byte` out of bounds!  ");
+        ushort* shorts= cast(ushort*)(this.data.ptr + index);
+        shorts[0]= val;
+    };
+    public void setUInt(uint val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > index, "`int` out of bounds!  ");
+        uint* bytes= cast(uint*)(this.data.ptr + index);
+        bytes[index]= val;
+    };
+    public void setULong(ulong val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > indexByte, "`byte` out of bounds!  ");
+        ulong* ulongs= cast(ulong*)(this.data.ptr + index);
+        ulongs[0]= val;
+    };
 };
 
 unittest {
@@ -43,5 +67,13 @@ unittest {
     assert((cast(ubyte[])flags.__bitfield1_storage)[1]==0x00);
     assert((cast(ubyte[])flags.__bitfield1_storage)[2]==0x60);
     assert((cast(ubyte[])flags.__bitfield1_storage)[3]==0x00);
+    assert((cast(ubyte[])flags.__bitfield1_storage)[4]==0x40);
+    // writeln(flags.data);   //   [17, 0, 96, 0, 64]
+    flags.setUInt(2500000000, 0);
+    // writeln(flags.data);   //   [0, 249, 2, 149, 64]
+    assert((cast(ubyte[])flags.__bitfield1_storage)[0]==0x00);
+    assert((cast(ubyte[])flags.__bitfield1_storage)[1]==0xf9);
+    assert((cast(ubyte[])flags.__bitfield1_storage)[2]==0x02);
+    assert((cast(ubyte[])flags.__bitfield1_storage)[3]==0x95);
     assert((cast(ubyte[])flags.__bitfield1_storage)[4]==0x40);
 };
