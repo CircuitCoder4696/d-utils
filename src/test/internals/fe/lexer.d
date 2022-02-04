@@ -4,25 +4,25 @@ import std.stdio:writeln;
 
 enum TokenQuery {
     @(null    ,TokenGroup.litteral  ,""              ) NULL= 0,
-    @(null    ,TokenGroup.whitespace,"[ \\r\\t\\n]"  ) WhiteSpace,
-    @(null    ,TokenGroup.litteral  ,"[0-9]"         ) Number,
-    @(null    ,TokenGroup.litteral  ,"[A-Za-z]"      ) Letter,
-    @(null    ,TokenGroup.litteral  ,"[+\\-\\*/;]"   ) Operator,
-    @(null    ,TokenGroup.litteral  ,"[\\[\\]\\{\\}]") Braket,
-    @(null    ,TokenGroup.litteral  ,"[\\(\\)]"      ) Parenthese,
-    @(null    ,TokenGroup.litteral  ,"[\"]"          ) Quote,
-    @("null"  ,TokenGroup.builtin   ,""              ) Builtin_Null,
-    @("if"    ,TokenGroup.keyword   ,""              ) KW_If,
-    @("+"     ,TokenGroup.op        ,""              ) Op_Plus,
-    @("-"     ,TokenGroup.op        ,""              ) Op_Dash,
-    @("import",TokenGroup.keyword   ,""              ) KW_Import,
+    @(null    ,TokenGroup.whitespace,"[ \\r\\t\\n]"  ) WhiteSpace,     //  a1
+    @(null    ,TokenGroup.litteral  ,"[0-9]"         ) Number,         //  a2
+    @(null    ,TokenGroup.litteral  ,"[A-Za-z]"      ) Letter,         //  a3
+    @(null    ,TokenGroup.litteral  ,"[+\\-\\*/;]"   ) Operator,       //  a4
+    @(null    ,TokenGroup.litteral  ,"[\\[\\]\\{\\}]") Braket,         //  a5
+    @(null    ,TokenGroup.litteral  ,"[\\(\\)]"      ) Parenthese,     //  a6
+    @(null    ,TokenGroup.litteral  ,"[\"]"          ) Quote,          //  a7
+    @("null"  ,TokenGroup.builtin   ,""              ) Builtin_Null,   //  a8
+    @("if"    ,TokenGroup.keyword   ,""              ) KW_If,          //  a9
+    @("+"     ,TokenGroup.op        ,""              ) Op_Plus,        // a10
+    @("-"     ,TokenGroup.op        ,""              ) Op_Dash,        // a11
+    @("import",TokenGroup.keyword   ,""              ) KW_Import,      // a12
     @(null    ,TokenGroup.exception ,""              ) OutOfBoundsException= -1,
 };
 
 enum TokenPatturn {
     @(null) NULL= 0,
-    @([Letter]                 ,[identifier,Letter,Number]) identifier,
-    @([Quote,Number,Parenthese],[                        ]) value,
+    @([Letter]                 ,[identifier,Letter,Number]) identifier,   // b1
+    @([Quote,Number,Parenthese],[                        ]) value,        // b2
 };
 /**
  * TokenPattern | (start)  | (loop)   | [name]
