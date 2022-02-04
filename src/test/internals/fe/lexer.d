@@ -1,4 +1,4 @@
-module app;
+module d.internals.fe.lexer.Test;
 import d.internals.fe.lexer;
 import std.stdio:writeln;
 
