@@ -49,6 +49,9 @@ public struct BitArray {
         ulong* ulongs= cast(ulong*)(this.data.ptr + index);
         ulongs[0]= val;
     };
+    public string toString() {
+        return "BitArray(%s)".format(this.size);
+    };
 };
 
 public struct BitField(uint size) {
@@ -95,6 +98,9 @@ public struct BitField(uint size) {
         assert(size > indexByte, "`byte` out of bounds!  ");
         ulong* ulongs= cast(ulong*)(this.data.ptr + index);
         ulongs[0]= val;
+    };
+    public string toString() {
+        return "BitField!(%s)".format(size);
     };
 };
 
