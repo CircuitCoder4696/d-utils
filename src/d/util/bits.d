@@ -1,6 +1,57 @@
 module d.util.bits;
 
-public struct BitArray(uint size) {
+public struct BitArray {
+    alias bitfield= void[];
+    public bitfield data;
+    public size_t size;
+    public bitfield __bitfield1_storage() @property { return this.data; };
+    private enum metaIndex_unrap= "uint indexByte= index /8; uint indexBit= index %8;";
+    private enum bitPlaces= [0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01];
+    public this(uint size) {
+    	uint byteNum= (size /8) + ((size %8)>0);
+        this.size= size;
+        this.data= new void[byteNum];
+    };
+    public bool opIndex(uint index) @property {
+        mixin(metaIndex_unrap);
+        return ((cast(ubyte[])this.data)[indexByte]&bitPlaces[indexBit])>0;
+    };
+    public void opIndexAssign(bool bit, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > ((indexByte*8) + indexBit), "`bit` out of bounds!  ");
+        ubyte* bytes= cast(ubyte*)this.data.ptr;
+        ubyte v= bytes[indexByte];
+        v ^= v & bitPlaces[indexBit];
+        v |= bit * bitPlaces[indexBit];
+        (cast(ubyte[])this.data)[indexByte]= v;
+    };
+    public void setUByte(ubyte val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > index, "`byte` out of bounds!  ");
+        ubyte* bytes= cast(ubyte*)this.data.ptr;
+        bytes[index]= val;
+    };
+    public void setUShort(ushort val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > indexByte, "`byte` out of bounds!  ");
+        ushort* shorts= cast(ushort*)(this.data.ptr + index);
+        shorts[0]= val;
+    };
+    public void setUInt(uint val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > index, "`int` out of bounds!  ");
+        uint* bytes= cast(uint*)(this.data.ptr + index);
+        bytes[index]= val;
+    };
+    public void setULong(ulong val, uint index) @property {
+        mixin(metaIndex_unrap);
+        assert(size > indexByte, "`byte` out of bounds!  ");
+        ulong* ulongs= cast(ulong*)(this.data.ptr + index);
+        ulongs[0]= val;
+    };
+};
+
+public struct BitField(uint size) {
     private enum byteNum= (size /8) + ((size %8)>0);
     private enum metaIndex= "[index /8, index %8]";
     private enum metaIndex_unrap= "uint indexByte= index /8; uint indexBit= index %8;";
