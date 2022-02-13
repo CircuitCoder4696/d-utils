@@ -1,7 +1,7 @@
 module d.util.array;
 public import std.array;
 
-public struct Array2D(T) {
+public struct Array2D_data(T) {
     private uint x;
     private uint y;
     private T[] data;
@@ -18,9 +18,9 @@ public struct Array2D(T) {
     };
 };
 
-alias doubleArray2D= Array2D!double;
+alias doubleArray2D= Array2D_data!double;
 
-public struct Array3D(T) {
+public struct Array3D_data(T) {
     private ulong x;
     private ulong y;
     private ulong z;
@@ -39,7 +39,7 @@ public struct Array3D(T) {
     };
 };
 
-alias doubleArray3D= Array3D!double;
+alias doubleArray3D= Array3D_data!double;
 
 public class Array(T) {
     private uint dn;
