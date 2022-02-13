@@ -3,8 +3,17 @@ public import std.array;
 
 unittest {
     import std.stdio:writeln;
-    auto d= Array!float(40*40,400,5);
-    writeln(d);
+    import std.math;
+    uint i,x,y,z;
+    auto d1= Array!float(40*40,400,5);
+    for(i=0;i<d1.data.length;i++) {
+        d1.data[i]= cast(float) sin(cast(double) i);
+    };
+    auto d2= Array!float(40*40);
+    for(x=0;x<d1.d[0];x++)for(x=0;x<d1.d[0];x++) {
+        d2[x]= d2[x] + d1[x,y];
+    };
+    writeln(d1);
 };
 
 public struct Array(T) {
@@ -49,7 +58,9 @@ public struct Array(T) {
     };
     public this(uint x, uint y, uint z) {
         this.d= [x, y, z];
-        this.data= new T[(x +1)*y*z];
+        T result= new T[(x +1)*y*z];
+        if(result==nan)return 0;
+        this.data= result;
     };
     public T opIndex(uint x, uint y, uint z) {
         assert(this.d[0] > x, "`x:uint` is out of range.  ");
