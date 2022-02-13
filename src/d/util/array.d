@@ -60,7 +60,8 @@ public class Array(T) {
 
 unittest {
     import std.stdio:writeln;
-    doubleArray2d test= doubleArray2d(4, 5);
-    test[3,5]= 21.0;
-    writeln(test);
+    auto d2= Array2D_data!(float)(4,5);
+    auto d3= Array3D_data!(float)(4,5,6);
+    writeln(d2);
+    writeln(d3);
 };
