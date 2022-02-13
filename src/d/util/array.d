@@ -63,39 +63,6 @@ public struct Array(T) {
         assert(this.d[2] > z, "`z:uint` is out of range.  ");
         this.data[(x + ((y + (z*this.d[1]))*this.d[0]))]= v;
     };
-    public Array!T multX_1D(T[] input) {
-        uint x,y;
-        Array!T result= Array!T(this.d);
-        for(x=0;x<this.d[0];x++){
-            this[x,y]= this[x,y] * input[x];
-        };
-    };
-    public Array!T multX_2D(T[] input) {
-        uint x,y;
-        for(x=0;x<this.d[0];x++)for(y=0;y<this.d[1];y++){
-            this[x,y]= this[x,y] * input[x];
-        };
-    };
-    public Array!T multX_3D(T[] input) {
-        uint x,y,z;
-        for(x=0;x<this.d[0];x++)for(y=0;y<this.d[1];y++)for(z=0;z<this.d[2];z++){
-            this[x,y,z]= this[x,y,z] * input[x];
-        };
-    };
-    public Array!T addiFlattenY_3D() {
-        uint x,y,z;
-        for(x=0;x<this.d[0];x++)for(y=1;y<this.d[0];y++)for(z=0;z<this.d[0];z++){
-            this[x,0,z] += this[x,y,z];
-        };
-    };
-    public Array!T addiFlattenY_2D() {
-        uint x,y;
-        Array!T result= Array!T(this.d[0]);
-        for(x=0;x<this.d[0];x++)for(y=1;y<this.d[0];y++){
-            result[x] += this[x,y];
-        };
-        return result;
-    };
 };
 
 alias doubleArray= Array!double;
