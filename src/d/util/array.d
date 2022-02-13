@@ -24,15 +24,27 @@ public struct Array2D_data(T) {
 
 alias doubleArray2D= Array2D_data!double;
 
-public struct Array3D_data(T) {
+public struct Array(T) {
     public static deRef(T)(void* array) {
         alias t= Array2D_data!T;
         return (cast(t*)array)[0];
     };
+    private byte dn;
     private ulong x;
     private ulong y;
     private ulong z;
     private T[] data;
+    public this(uint x, uint y) {
+        this.x= x;
+        this.y= y;
+        this.data= new T[(x +1)*y];
+    };
+    public T opIndex(uint x, uint y) {
+        return this.data[(x*this.y) + y];
+    };
+    public void opIndexAssign(T v, uint x, uint y) {
+        this.data[(x*this.y) + y]= v;
+    };
     public this(uint x, uint y, uint z) {
         this.x= x;
         this.y= y;
