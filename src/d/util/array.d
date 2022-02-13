@@ -1,8 +1,6 @@
 module d.util.array;
 public import std.array;
 
-alias doubleArray2D= Array2D_data!double;
-
 public struct Array(T) {
     public static deRef(T)(void* array) {
         alias t= Array2D_data!T;
