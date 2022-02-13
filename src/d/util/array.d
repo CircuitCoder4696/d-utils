@@ -59,7 +59,7 @@ public struct Array(T) {
     };
     public this(uint x, uint y, uint z) {
         this.d= [x, y, z];
-        T result= new T[(x +1)*y*z];
+        T[] result= new T[(x +1)*y*z];
         if(isNan(result))return 0;
         this.data= result;
     };
