@@ -41,6 +41,23 @@ public struct Array3D(T) {
 
 alias doubleArray3D= Array3D!double;
 
+public class Array(T) {
+    private uint dn;
+    private void[] data;
+    public this(uint x, uint y) {
+        Array2D!T result= Array2D!T(x,y);
+        this.dn= 2;
+        this.data= cast(void[]) result;
+        return result;
+    };
+    public this(uint x, uint y, uint z) {
+        Array3D!T result= Array3D!T(x,y,z);
+        this.dn= 3;
+        this.data= cast(void[]) result;
+        return result;
+    };
+};
+
 unittest {
     import std.stdio:writeln;
     doubleArray2d test= doubleArray2d(4, 5);
