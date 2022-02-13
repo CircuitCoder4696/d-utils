@@ -18,6 +18,7 @@ unittest {
 
 public struct Array(T) {
     import std.format:format;
+    import std.traits:isNan;
     public static deRef(T)(void* array) {
         alias t= Array2D_data!T;
         return (cast(t*)array)[0];
