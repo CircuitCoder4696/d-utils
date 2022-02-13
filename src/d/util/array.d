@@ -45,13 +45,13 @@ public class Array(T) {
     private uint dn;
     private void[] data;
     public this(uint x, uint y) {
-        Array2D!T result= Array2D!T(x,y);
+        Array2D_data!T result= Array2D_data!T(x,y);
         this.dn= 2;
         this.data= cast(void[]) result;
         return result;
     };
     public this(uint x, uint y, uint z) {
-        Array3D!T result= Array3D!T(x,y,z);
+        Array3D_data!T result= Array3D_data!T(x,y,z);
         this.dn= 3;
         this.data= cast(void[]) result;
         return result;
