@@ -6,11 +6,9 @@ public struct Array(T) {
         alias t= Array2D_data!T;
         return (cast(t*)array)[0];
     };
-    private byte dn;
     private uint[] d;
     private T[] data;
     public this(uint x, uint y) {
-        this.dn= 2;
         this.d= [x, y];
         this.data= new T[(x +1)*y];
     };
@@ -21,7 +19,6 @@ public struct Array(T) {
         this.data[(x*this.d[1]) + y]= v;
     };
     public this(uint x, uint y, uint z) {
-        this.dn= 3;
         this.d= [x, y, z];
         this.data= new T[(x +1)*y*z];
     };
@@ -45,8 +42,8 @@ unittest {
 
 unittest {
     import std.stdio:writeln;
-    auto d2= new Array!float(4,5);
-    auto d3= new Array!float(4,5,6);
+    auto d2= Array!float(4,5);
+    auto d3= Array!float(4,5,6);
     writeln(d2);
     writeln(d3);
 };
