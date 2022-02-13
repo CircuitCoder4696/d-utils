@@ -44,8 +44,8 @@ alias doubleArray= Array!double;
 
 unittest {
     import std.stdio:writeln;
-    auto d2= Array2D_data!(float)(4,5);
-    auto d3= Array3D_data!(float)(4,5,6);
+    auto d2= Array!float(4,5);
+    auto d3= Array!float(4,5,6);
     writeln(d2);
     writeln(d3);
 };
