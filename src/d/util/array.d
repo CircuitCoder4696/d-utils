@@ -18,7 +18,7 @@ unittest {
 
 public struct Array(T) {
     import std.format:format;
-    import std.traits:isNan;
+    import std.traits:isNaN;
     public static deRef(T)(void* array) {
         alias t= Array2D_data!T;
         return (cast(t*)array)[0];
@@ -60,7 +60,7 @@ public struct Array(T) {
     public this(uint x, uint y, uint z) {
         this.d= [x, y, z];
         T[] result= new T[(x +1)*y*z];
-        if(isNan(result))return 0;
+        if(isNaN(result))return 0;
         this.data= result;
     };
     public T opIndex(uint x, uint y, uint z) {
