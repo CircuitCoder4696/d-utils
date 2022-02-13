@@ -90,9 +90,11 @@ public struct Array(T) {
     };
     public Array!T addiFlattenY_2D() {
         uint x,y;
+        Array!T result= Array!T(this.d[0]);
         for(x=0;x<this.d[0];x++)for(y=1;y<this.d[0];y++){
-            this[x,0] += this[x,y];
+            result[x] += this[x,y];
         };
+        return result;
     };
 };
 
