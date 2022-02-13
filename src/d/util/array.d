@@ -5,11 +5,11 @@ unittest {
     import std.stdio:writeln;
     import std.math;
     uint i,x,y,z;
-    auto d1= Array!float(40*40,400,5);
+    Array!float d1= Array!float(40*40,400,5);
     for(i=0;i<d1.data.length;i++) {
         d1.data[i]= cast(float) sin(cast(double) i);
     };
-    auto d2= Array!float(40*40);
+    Array!float d2= Array!float(40*40);
     for(x=0;x<d1.d[0];x++)for(x=0;x<d1.d[0];x++) {
         d2[x]= d2[x] + d1[x,y];
     };
