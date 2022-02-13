@@ -2,6 +2,7 @@ module d.util.array;
 public import std.array;
 
 public struct Array(T) {
+    import std.format:format;
     public static deRef(T)(void* array) {
         alias t= Array2D_data!T;
         return (cast(t*)array)[0];
@@ -13,9 +14,13 @@ public struct Array(T) {
         this.data= new T[(x +1)*y];
     };
     public T opIndex(uint x, uint y) {
+        assert(this.d[0] > x, "`x:uint` is out of range.  ");
+        assert(this.d[1] > y, "`y:uint` is out of range.  ");
         return this.data[(x*this.d[1]) + y];
     };
     public void opIndexAssign(T v, uint x, uint y) {
+        assert(this.d[0] > x, "`x:uint` is out of range.  ");
+        assert(this.d[1] > y, "`y:uint` is out of range.  ");
         this.data[(x*this.d[1]) + y]= v;
     };
     public this(uint x, uint y, uint z) {
@@ -23,9 +28,15 @@ public struct Array(T) {
         this.data= new T[(x +1)*y*z];
     };
     public T opIndex(uint x, uint y, uint z) {
+        assert(this.d[0] > x, "`x:uint` is out of range.  ");
+        assert(this.d[1] > y, "`y:uint` is out of range.  ");
+        assert(this.d[2] > z, "`z:uint` is out of range.  ");
         return this.data[(x + ((y + (z*this.d[1]))*this.d[0]))];
     };
     public void opIndexAssign(T v, uint x, uint y, uint z) {
+        assert(this.d[0] > x, "`x:uint` is out of range.  ");
+        assert(this.d[1] > y, "`y:uint` is out of range.  ");
+        assert(this.d[2] > z, "`z:uint` is out of range.  ");
         this.data[(x + ((y + (z*this.d[1]))*this.d[0]))]= v;
     };
 };
