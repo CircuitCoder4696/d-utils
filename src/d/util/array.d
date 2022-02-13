@@ -7,34 +7,29 @@ public struct Array(T) {
         return (cast(t*)array)[0];
     };
     private byte dn;
-    private ulong x;
-    private ulong y;
-    private ulong z;
+    private uint[] d;
     private T[] data;
     public this(uint x, uint y) {
         this.dn= 2;
-        this.x= x;
-        this.y= y;
+        this.d= [x, y];
         this.data= new T[(x +1)*y];
     };
     public T opIndex(uint x, uint y) {
-        return this.data[(x*this.y) + y];
+        return this.data[(x*this.d[1]) + y];
     };
     public void opIndexAssign(T v, uint x, uint y) {
-        this.data[(x*this.y) + y]= v;
+        this.data[(x*this.d[1]) + y]= v;
     };
     public this(uint x, uint y, uint z) {
         this.dn= 3;
-        this.x= x;
-        this.y= y;
-        this.z= z;
+        this.d= [x, y, z];
         this.data= new T[(x +1)*y*z];
     };
     public T opIndex(uint x, uint y, uint z) {
-        return this.data[(x + ((y + (z*this.y))*this.x))];
+        return this.data[(x + ((y + (z*this.d[1]))*this.d[0]))];
     };
     public void opIndexAssign(T v, uint x, uint y, uint z) {
-        this.data[(x + ((y + (z*this.y))*this.x))]= v;
+        this.data[(x + ((y + (z*this.d[1]))*this.d[0]))]= v;
     };
 };
 
