@@ -45,7 +45,7 @@ public struct Array(T) {
     };
     public this(uint x, uint y) {
         this.d= [x, y];
-        this.data= new T[(x +1)*y];
+        this.data= new T[x*(y +1)];
     };
     public T opIndex(uint x, uint y) {
         assert(this.d[0] > x, "`x:uint` is out of range.  ");
@@ -59,7 +59,7 @@ public struct Array(T) {
     };
     public this(uint x, uint y, uint z) {
         this.d= [x, y, z];
-        T[] result= new T[(x +1)*y*z];
+        T[] result= new T[x*(y +1)*z];
         if(isNaN(result))return 0;
         this.data= result;
     };
