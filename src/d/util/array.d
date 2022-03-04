@@ -75,6 +75,22 @@ public struct Array(T) {
         assert(this.d[2] > z, "`z:uint` is out of range.  ");
         this.data[(x + ((y + (z*this.d[1]))*this.d[0]))]= v;
     };
+	//   Experimental:
+		public double[] y_mult_x(double[] values) {
+			double[] result= new double[this.d[0]];
+			uint x,y,yMax;
+			yMax= this.d[1] + 1;
+			foreach(i; 0..(this.data.length)) {
+				x= i / yMax;
+				y= i % yMax;
+				if(y>=yMax) {
+					result[x] += this.data[i];
+				} else {
+					result[x] += this.data[i] * values[y];
+				};
+			};
+			return result;
+		};
 };
 
 alias doubleArray= Array!double;
