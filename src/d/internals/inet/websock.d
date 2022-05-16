@@ -1,6 +1,6 @@
 module d.internals.inet.websock;
 
-public struct wsReqHeaderParser {
+private struct wsReqHeaderParser {
     import std.base64;
     import std.digest.sha;
     import std.string;
@@ -30,7 +30,7 @@ public struct wsReqHeaderParser {
     };
 };
 
-public struct wsResHeaderParser {
+private struct wsResHeaderParser {
     import std.string;
     public string Upgrade;
     public string Connection;
@@ -46,5 +46,13 @@ public struct wsResHeaderParser {
         } else {
             if(subHeader=="HTTP/1.1 101 Switching Protocols")this.WebSocket_HTTPResponse= true;
         };
+    };
+};
+
+public class wsHeaderGenerator {
+    public static string generateResponseHeader(string wsRequest) {
+        wsReqHeaderParser req= wsReqHeaderParser(wsRequest);
+        string result= "HTTP/1.1 101 Switching Protocols\nUpgrade: "~req.Upgrade~"\nConnection: "~req.Connection~"\nSec-WebSocket-Accept: "~req.Sec_WebSocket_Accept~"\n\n";
+        return result;
     };
 };
