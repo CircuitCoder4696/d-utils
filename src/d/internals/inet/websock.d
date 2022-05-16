@@ -1,6 +1,6 @@
 module d.internals.inet.websock;
 
-public struct wsReqHeader {
+public struct wsReqHeaderParser {
     import std.string;
     public string Host;
     public string Upgrade;
