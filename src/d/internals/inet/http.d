@@ -38,6 +38,55 @@ private struct httpReqParser {
     };
 };
 
+
+private struct httpResParser {
+    import std.base64;
+    import std.digest.sha;
+    import std.string;
+    public bool Status_200_OK;
+    public string Access_Control_Allow_Origin;
+    public string Connection;
+    public string Content_Encoding;
+    public string Content_Type;
+    public string Date;
+    public string Etag;
+    public string Keep_Alive;
+    public string Last_Modified;
+    public string Server;
+    public string Set_Cookie;
+    public string Transfer_Encoding;
+    public string Vary;
+    public string X_Backend_Server;
+    public string X_Cache_Info;
+    public string X_kuma_revision;
+    public string x_frame_options;
+    public this(string requestHeader) {
+        string[] shd;
+        foreach(subHeader; requestHeader.split("\n"))if(subHeader.indexOf(": ") !=-1) {
+            shd= subHeader.split(": ");
+            if(shd[0]=="Access-Control-Allow-Origin")this.Access_Control_Allow_Origin= shd[1];
+            if(shd[0]=="Connection")this.Connection= shd[1];
+            if(shd[0]=="Content-Encoding")this.Content_Encoding= shd[1];
+            if(shd[0]=="Content-Type")this.Content_Type= shd[1];
+            if(shd[0]=="Date")this.Date= shd[1];
+            if(shd[0]=="Etag")this.Etag= shd[1];
+            if(shd[0]=="Keep-Alive")this.Keep_Alive= shd[1];
+            if(shd[0]=="Last-Modified")this.Last_Modified= shd[1];
+            if(shd[0]=="Server")this.Server= shd[1];
+            if(shd[0]=="Set-Cookie")this.Set_Cookie= shd[1];
+            if(shd[0]=="Transfer-Encoding")this.Transfer_Encoding= shd[1];
+            if(shd[0]=="Vary")this.Vary= shd[1];
+            if(shd[0]=="X-Backend-Server")this.X_Backend_Server= shd[1];
+            if(shd[0]=="X-Cache-Info")this.X_Cache_Info= shd[1];
+            if(shd[0]=="X-kuma-revision")this.X_kuma_revision= shd[1];
+            if(shd[0]=="x-frame-options")this.x_frame_options= shd[1];
+        } else {
+            if(subHeader=="200 OK")this.Status_200_OK= true;
+            // if(subHeader=="POST /home.html HTTP/1.1")this.HTTP_PostRequest= true;
+        };
+    };
+};
+
 public class httpHeaderGenerator {
     // public static string generateResponseHeader(string httpRequest) {};
 };
