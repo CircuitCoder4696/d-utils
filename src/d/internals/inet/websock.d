@@ -64,7 +64,8 @@ public enum wsDataType : uint {
     FinalBinary,
 };
 
-@Experimental public class contentHeader {  //ToDo:   Add additional features.  
+version(Experimental) {
+public class contentHeader {  //ToDo:   Add additional features.  
     public BitFeild!80 data;
     private void ascii() {
         this.data[4]++;
@@ -105,6 +106,7 @@ public enum wsDataType : uint {
         return ch.data.data;
     };
 };
+};   //version:   Experimental
 
 public class wsHeaderGenerator {
     public static string generateResponseHeader(string wsRequest) {
