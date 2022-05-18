@@ -50,7 +50,7 @@ private struct wsResHeaderParser {
             if(shd[0]=="Upgrade")this.Upgrade= shd[1];
             if(shd[0]=="Connection")this.Connection= shd[1];
             if(shd[0]=="Sec-WebSocket-Accept")this.Sec_WebSocket_Accept= shd[1];
-            if(shd[0]=="Sec-WebSocket-Protocol")this.Sec_WebSocket_ Protocol = shd[1];
+            if(shd[0]=="Sec-WebSocket-Protocol")this.Sec_WebSocket_Protocol = shd[1];
         } else {
             if(subHeader=="HTTP/1.1 101 Switching Protocols")this.WebSocket_HTTPResponse= true;
         };
