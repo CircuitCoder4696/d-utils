@@ -9,6 +9,7 @@ private struct wsReqHeaderParser {
     public string Upgrade;
     public string Origin;
     public string Sec_WebSocket_Key;
+    public string Sec_WebSocket_Origin;
     public string Sec_WebSocket_Protocol;
     public string Sec_WebSocket_Version;
     public bool WebSocket_GetRequest;
@@ -22,6 +23,7 @@ private struct wsReqHeaderParser {
             if(shd[0]=="Sec_WebSocket_Protocol")this.Sec_WebSocket_Protocol= shd[1];
             if(shd[0]=="Origin")this.Origin= shd[1];
             if(shd[0]=="Sec-WebSocket-Key")this.Sec_WebSocket_Key= shd[1];
+            if(shd[0]=="Sec-WebSocket-Origin")this.Sec_WebSocket_Origin= shd[1];
             if(shd[0]=="Sec-WebSocket-Version")this.Sec_WebSocket_Version= shd[1];
         } else {
             if(subHeader=="GET /chat HTTP/1.1")this.WebSocket_GetRequest= true;
@@ -51,6 +53,41 @@ private struct wsResHeaderParser {
             if(shd[0]=="Sec-WebSocket-Protocol")this.Sec_WebSocket_ Protocol = shd[1];
         } else {
             if(subHeader=="HTTP/1.1 101 Switching Protocols")this.WebSocket_HTTPResponse= true;
+        };
+    };
+};
+
+public enum wsDataType : uint {
+    ASCII,
+    Binary,
+    FinalASCII,
+    FinalBinary,
+};
+
+@Experimental public class contentHeader {  //ToDo:   Add additional features.  
+    public BitFeild!80 data;
+    private static void ascii() {
+        this.data[4]++;
+    };
+    private static void binary() {
+        this.data[5]++;
+    };
+    private static void final() {
+        this.data[0]++;
+        this.data.setUByte(0, this.data.getUByte(0)&0x0f);
+    };
+    private static void setLength(ulong newLen) {
+        assert(newLen <= 30000, "This library is currently expiremental.  Length is limited up to 30000.  ");
+        int i0;
+        if(newLen>125)i0++;
+        if(newLen>65535)i0++;
+        switch (i0) {
+            case 1:
+                this.data.setUShort(16, newLen);
+            case 2:
+                this.data.setULong(16, newLen);
+            default:
+                this.data.data[1]= cast(ubyte) newLen;
         };
     };
 };
