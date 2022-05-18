@@ -1,4 +1,4 @@
-name "util"
+name "d-util"
 license "LGPL 2.1"
 description "a library of useful compile-time and run-time objects.  "
 authors "CircuitCoder4696"
