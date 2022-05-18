@@ -66,17 +66,17 @@ public enum wsDataType : uint {
 
 @Experimental public class contentHeader {  //ToDo:   Add additional features.  
     public BitFeild!80 data;
-    private static void ascii() {
+    private void ascii() {
         this.data[4]++;
     };
-    private static void binary() {
+    private void binary() {
         this.data[5]++;
     };
-    private static void final() {
+    private void final() {
         this.data[0]++;
         this.data.setUByte(0, this.data.getUByte(0)&0x0f);
     };
-    private static void setLength(ulong newLen) {
+    private void setLength(ulong newLen) {
         assert(newLen <= 30000, "This library is currently expiremental.  Length is limited up to 30000.  ");
         int i0;
         if(newLen>125)i0++;
@@ -84,11 +84,25 @@ public enum wsDataType : uint {
         switch (i0) {
             case 1:
                 this.data.setUShort(16, newLen);
+                break;
             case 2:
                 this.data.setULong(16, newLen);
+                break;
             default:
                 this.data.data[1]= cast(ubyte) newLen;
         };
+    };
+    public static void[10] generateBinaryDescription(wsDataType wsType, ubyte[] data) {
+        contentHeader ch= new contentHeader();
+        switch(wsType) {
+            case wsDataType.ASCII:
+                ch.ascii();
+                break;
+            case wsDataType.Binary:
+                ch.binary();
+                break;
+        };
+        return ch.data.data;
     };
 };
 
