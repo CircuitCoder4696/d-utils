@@ -24,15 +24,6 @@ enum TokenPatturn {
     @([Letter]                 ,[identifier,Letter,Number]) identifier,   // b1
     @([Quote,Number,Parenthese],[                        ]) value,        // b2
 };
-/**
- * TokenPattern | (start)  | (loop)   | [name]
- * ===============================================
- * b1           | a3       | b1 a3 a2 | identifier
- * -----------------------------------------------
- * b2           | a2 a6 a7 | none     | value
- * ---------------------------------------------
- * b3           | a4       | a1       | operator
-**/
 
 string code= `module main;
 import std.stdo;
