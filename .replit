@@ -1,0 +1,4 @@
+run = "dub run"
+
+[nix]
+channel = "stable-21_11"
