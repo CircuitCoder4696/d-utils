@@ -39,6 +39,7 @@ private struct httpReqParser {
 };
 
 public class HTTPS_reqHeader {
+    import std.array:replaceAll;
     public string[string] data;
     public void opDispatch(string n)(string value) {
         this.data[n]= value;
@@ -47,12 +48,19 @@ public class HTTPS_reqHeader {
         string result= "";
         foreach(index; indexes) {
             if(this.data[index] is null)continue;
-            result ~= (this.data[index] ~ "\n");
+            result ~= (this.data[index].replaceAll("_", "-") ~ "\n");
         };
         return result;
     };
     public string generate_httpPage(string data) {
         return this.generateHeader() ~ data;
+    };
+};
+public class t_HTTPS_reqHeader {
+    void generate_httpReq() {
+        auto v0= new HTTPS_reqHeader();
+        v0.Accept_Encoding= "utf-8";
+        
     };
 };
 
