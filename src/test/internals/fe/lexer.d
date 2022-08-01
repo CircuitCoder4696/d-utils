@@ -1,5 +1,5 @@
 module d.internals.fe.lexer.Test;
-import d.internals.fe.lexer;
+import d.internals.fe.lowLevelLexer;
 import std.stdio:writeln;
 
 enum TokenQuery {
