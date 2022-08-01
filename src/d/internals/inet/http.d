@@ -3,7 +3,7 @@ module d.internals.inet.http;
 private struct httpReqParser {
     import std.base64;
     import std.digest.sha;
-    import std.string;
+    import std.array;
     public string Accept;
     public string Accept_Encoding;
     public string Accept_Language;
@@ -49,7 +49,7 @@ public class HTTPS_reqHeader {
         string result= "";
         foreach(index; indexes) {
             if(this.data[index] is null)continue;
-            result ~= index ~ ": " ~ ArrayProcessor.replaceAll(data, "_", "-") ~ "\n";
+            result ~= index ~ ": " ~ data.replace("_", "-") ~ "\n";
         };
         return result;
     };
