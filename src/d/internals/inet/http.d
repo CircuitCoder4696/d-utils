@@ -48,19 +48,20 @@ public class HTTPS_reqHeader {
         string result= "";
         foreach(index; indexes) {
             if(this.data[index] is null)continue;
-            result ~= (this.data[index].replaceAll("_", "-") ~ "\n");
+            result ~= index ~ ": " ~ (this.data[index].replaceAll("_", "-") ~ "\n");
         };
         return result;
     };
     public string generate_httpPage(string data) {
-        return this.generateHeader() ~ data;
+        return this.generateHeader() ~ "/n" ~ data;
     };
 };
 public class t_HTTPS_reqHeader {
     void generate_httpReq() {
         auto v0= new HTTPS_reqHeader();
         v0.Accept_Encoding= "utf-8";
-        
+        auto v1= new httpReqParser(v0.generate_httpPage("<html></html>"));
+        writeln(v1.)
     };
 };
 
