@@ -1,10 +1,10 @@
 module d.util.bits;
 
 public struct BitArray {
+    import std.format;
     alias bitfield= void[];
     public bitfield data;
     public size_t size;
-    public bitfield __bitfield1_storage() @property { return this.data; };
     private enum metaIndex_unrap= "uint indexByte= index /8; uint indexBit= index %8;";
     private enum bitPlaces= [0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01];
     public this(uint size) {
@@ -52,6 +52,7 @@ public struct BitArray {
     public string toString() {
         return "BitArray(%s)".format(this.size);
     };
+    public bitfield __bitfield1_storage() @property { return this.data; };
 };
 
 public struct BitField(uint size) {
