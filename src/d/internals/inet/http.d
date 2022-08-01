@@ -39,7 +39,7 @@ private struct httpReqParser {
 };
 
 public class HTTPS_reqHeader {
-    import std.array:replaceAll;
+    import std.string:replaceAll;
     public string[string] data;
     public void opDispatch(string n)(string value) {
         this.data[n]= value;
