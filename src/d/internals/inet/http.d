@@ -4,6 +4,7 @@ private struct httpReqParser {
     import std.base64;
     import std.digest.sha;
     import std.array;
+    import std.string;   //ToDo:   Write a more general-purpose version of `indexOf`, with performance, accuracy, and memory efficiency in mind.  
     public string Accept;
     public string Accept_Encoding;
     public string Accept_Language;
@@ -40,6 +41,7 @@ private struct httpReqParser {
 
 public class HTTPS_reqHeader {
     import d.proc.ArrayProcessor;
+    import std.array;
     private static string[] indexes= ["Accept", "Accept-Encoding"];
     public string[string] data;
     public void opDispatch(string n)(string value) {
