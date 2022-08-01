@@ -51,7 +51,7 @@ public class HTTPS_reqHeader {
         string result= "";
         foreach(index; indexes) {
             if(this.data[index] is null)continue;
-            result ~= index ~ ": " ~ data.replace("_", "-") ~ "\n";
+            result ~= index ~ ": " ~ data[index].replace("_", "-") ~ "\n";
         };
         return result;
     };
@@ -60,6 +60,7 @@ public class HTTPS_reqHeader {
     };
 };
 public class t_HTTPS_reqHeader {
+    import std.stdio:writeln;
     void generate_httpReq() {
         auto v0= new HTTPS_reqHeader();
         v0.Accept_Encoding= "utf-8";
@@ -75,6 +76,7 @@ private struct httpResParser {
     import std.base64;
     import std.digest.sha;
     import std.array;
+    import std.string;
     public bool Status_200_OK;
     public string Access_Control_Allow_Origin;
     public string Connection;
