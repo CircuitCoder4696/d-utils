@@ -73,7 +73,7 @@ public class contentHeader {  //ToDo:   Add additional features.
     private void binary() {
         this.data[5]++;
     };
-    private void final() {
+    private void __final() {
         this.data[0]++;
         this.data.setUByte(0, this.data.getUByte(0)&0x0f);
     };
