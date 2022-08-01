@@ -60,7 +60,7 @@ public struct Array(T) {
     public this(uint x, uint y, uint z) {
         this.d= [x, y, z];
         T[] result= new T[x*(y +1)*z];
-        if(isNaN(result))return 0;
+        foreach(ref elem; result)if(elem is T.nan)elem= 0;
         this.data= result;
     };
     public T opIndex(uint x, uint y, uint z) {
@@ -81,8 +81,8 @@ public struct Array(T) {
 			uint x,y,yMax;
 			yMax= this.d[1] + 1;
 			foreach(i; 0..(this.data.length)) {
-				x= i / yMax;
-				y= i % yMax;
+				x= cast(uint) (i / yMax);
+				y= cast(uint) (i % yMax);
 				if(y>=yMax) {
 					result[x] += this.data[i];
 				} else {
