@@ -39,7 +39,8 @@ private struct httpReqParser {
 };
 
 public class HTTPS_reqHeader {
-    import std.string:replaceAll;
+    import d.proc.ArrayProcessor;
+    private static string[] indexes= ["Accept", "Accept-Encoding"];
     public string[string] data;
     public void opDispatch(string n)(string value) {
         this.data[n]= value;
@@ -48,7 +49,7 @@ public class HTTPS_reqHeader {
         string result= "";
         foreach(index; indexes) {
             if(this.data[index] is null)continue;
-            result ~= index ~ ": " ~ (this.data[index].replaceAll("_", "-") ~ "\n");
+            result ~= index ~ ": " ~ ArrayProcessor.replaceAll(data, "_", "-") ~ "\n";
         };
         return result;
     };
@@ -71,7 +72,7 @@ public class t_HTTPS_reqHeader {
 private struct httpResParser {
     import std.base64;
     import std.digest.sha;
-    import std.string;
+    import std.array;
     public bool Status_200_OK;
     public string Access_Control_Allow_Origin;
     public string Connection;
