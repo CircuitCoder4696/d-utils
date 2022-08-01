@@ -38,6 +38,23 @@ private struct httpReqParser {
     };
 };
 
+public class HTTPS_reqHeader {
+    public string[string] data;
+    public void opDispatch(string n)(string value) {
+        this.data[n]= value;
+    };
+    public string generateHeader() {
+        string result= "";
+        foreach(index; indexes) {
+            if(this.data[index] is null)continue;
+            result ~= (this.data[index] ~ "\n");
+        };
+        return result;
+    };
+    public string generate_httpPage(string data) {
+        return this.generateHeader() ~ data;
+    };
+};
 
 private struct httpResParser {
     import std.base64;
