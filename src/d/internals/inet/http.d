@@ -61,7 +61,10 @@ public class t_HTTPS_reqHeader {
         auto v0= new HTTPS_reqHeader();
         v0.Accept_Encoding= "utf-8";
         auto v1= new httpReqParser(v0.generate_httpPage("<html></html>"));
-        writeln(v1.)
+        writeln(v1.Accept_Encoding);
+    };
+    public void test(string[] ArgV) {
+        generate_httpReq();
     };
 };
 
