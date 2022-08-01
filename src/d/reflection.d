@@ -8,7 +8,7 @@ public string[] stack_trace() {
     };
     version(LDC) {
         import std.stdio:writeln;
-        writeln("[Warn] ",__MODULE__," @",__LINE__,":   Reflection is not ready for `ldc`.  ");
+        writeln("[Err] ",__MODULE__," @",__LINE__,":   Reflection may require a lot of rewriting for it to work on `ldc`.  Try using `dmd`.  `ldc` returns incomplete information.  ");
     };
     import core.stdc.stdlib;
     void* st= malloc(0);
