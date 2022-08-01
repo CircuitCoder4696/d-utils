@@ -1,4 +1,4 @@
-run = "dub run"
+run = "clear\ndub run"
 
 [nix]
 channel = "stable-21_11"
