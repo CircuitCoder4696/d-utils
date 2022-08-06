@@ -39,8 +39,8 @@ public class ArrayProcessor {
     public static T[] replace(T)(T[] data, T[] oldSeg, T[] newSeg) {
         T[] result= [];
         result.length += 65536;   //Note:   Just in case, I want to try and avoid letting it take up space via reallocations.  
-        size_t pre,post,toLen= to.length;
-        size_t[] d0= indexesOf_hete(data, from);
+        size_t pre,post,newSegLen= newSeg.length;
+        size_t[] d0= indexesOf_hete(data, oldSeg);
         return data;
     };
 };
