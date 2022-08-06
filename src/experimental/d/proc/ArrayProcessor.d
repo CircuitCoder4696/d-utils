@@ -36,7 +36,7 @@ public class ArrayProcessor {
         };
         return result;
     };
-    public static T[] replace(T[] data, T[] oldSeg, T[] newSeg) {
+    public static T[] replace(T)(T[] data, T[] oldSeg, T[] newSeg) {
         return data;
     };
 };
