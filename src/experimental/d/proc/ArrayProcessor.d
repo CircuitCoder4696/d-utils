@@ -36,13 +36,17 @@ public class ArrayProcessor(T) {
         };
         return result;
     };
+    public static T[] replace(T[] data, T[] oldSeg, T[] newSeg) {
+        return data;
+    };
 };
 public class t_ArrayProcessor {
     import std.stdio:writeln;
     string d0= "Hello world!  ";
     string d1;
     void replaceSegmentsOfString() {
-        // d1= ArrayProcessor.replaceAll(d0, "o", ":letter_O:");
+        d1= ArrayProcessor.replace(d0, "o", ":letter_O:");
+        writeln(d1);
     };
     public void test(string[] ArgV) {
         replaceSegmentsOfString();
