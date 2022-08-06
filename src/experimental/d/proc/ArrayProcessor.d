@@ -46,10 +46,10 @@ public class t_ArrayProcessor {
     string d1;
     void replaceSegmentsOfString() {
         d1= ArrayProcessor.replace(d0, "o", ":letter_O:");
-        writeln(d1);
     };
     public void test(string[] ArgV) {
         replaceSegmentsOfString();
+        writeln(d1);
         writeln("[Critical] ",__MODULE__," @",__LINE__,":   Unfortunately this compiler doesn't see certain static methods.  ");
     };
 };
